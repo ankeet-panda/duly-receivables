@@ -1,0 +1,196 @@
+/* Duly tokens. Direction R, "Duplicate book" (design-notes/direction-v2.md): carbon-copy bill book; light by day, the same book under the desk lamp at night. */
+:root {
+  color-scheme: light;
+
+  /* Spacing: 4 px base, 8 px rhythm */
+  --space-0-5: 0.125rem;
+  --space-1: 0.25rem;
+  --space-1-5: 0.375rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Layout */
+  --container: 82.5rem;
+  --gutter: clamp(1rem, 3.2vw, 3rem);
+  --app-gap: 1.25rem;
+
+  /* Radius ladder (nested: panel 24 > card 16 > control 10) */
+  --radius-chip: 4px;
+  --radius-control: 8px;
+  --radius-card: 12px;
+  --radius-panel: 14px;
+  --radius-sheet: 12px; /* slip, composer, history, sheets */
+  --radius-pill: 999px;
+
+  /* Type: one family; hierarchy from size, weight and colour */
+  --font-text: "IBM Plex Sans", ui-sans-serif, "Segoe UI", sans-serif;
+  --text-12: 0.75rem;
+  --text-13: 0.8125rem;
+  --text-14: 0.875rem;
+  --text-16: 1rem;
+  --text-20: 1.25rem;
+  --text-24: 1.5rem;
+  --text-32: 2rem;
+  --stamp-size: 2.5rem; /* the word on the Paid stamp */
+  --step-lead: clamp(1.125rem, 1rem + 0.45vw, 1.3125rem);
+  --step-head: clamp(1.875rem, 1.3rem + 2.2vw, 3rem);
+  --step-display: clamp(2.5rem, 1.5rem + 3.9vw, 4.25rem);
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --leading-display: 1.04;
+  --leading-heading: 1.18;
+  --leading-ui: 1.35;
+  --leading-body: 1.55;
+  --tracking-head: -0.02em;
+  --tracking-display: -0.032em;
+
+  /* Neutrals: paper, faintly warm */
+  --n-h: 250; /* neutral hue */
+  --bg: oklch(0.972 0.004 250); /* page ground */
+  --surface: oklch(0.997 0.002 250); /* cards, slip, sheets */
+  --surface-2: oklch(0.955 0.006 250); /* wells, hover rows, segmented track */
+  --surface-3: oklch(0.925 0.012 262); /* selected row, pressed */
+  --line: oklch(0.895 0.008 250); /* decorative hairlines */
+  --line-soft: oklch(0.94 0.006 250); /* row dividers */
+  --border-control: oklch(0.6 0.014 250); /* input and outline-button edges (>= 3:1 on surface) */
+  --text: oklch(0.24 0.03 265); /* primary text on bg, surface, surface-2 */
+  --text-2: oklch(0.42 0.03 265); /* secondary text */
+  --text-3: oklch(0.5 0.025 265); /* meta text on bg and surface (>= 4.5:1) */
+
+  /* The one primary: fountain-pen ink */
+  --ink: oklch(0.42 0.14 266); /* primary fill */
+  --ink-hover: oklch(0.36 0.14 266); /* primary hover, one step of its own colour */
+  --on-ink: oklch(0.975 0.006 85); /* text on --ink */
+  --focus: oklch(0.5 0.16 262); /* focus ring (>= 3:1 on every ground) */
+  --selection: oklch(0.88 0.05 255); /* text selection */
+
+  /* The runway: the one deep object */
+  --deep: oklch(0.997 0.002 250); /* runway panel ground */
+  --deep-2: oklch(0.96 0.016 266); /* markers on the runway */
+  --deep-well: oklch(0.968 0.016 28); /* the late bay, sunk into the runway */
+  --deep-line: oklch(0.86 0.02 266); /* hairlines and ticks on the runway */
+  --on-deep: oklch(0.24 0.03 265); /* text on the runway */
+  --on-deep-2: oklch(0.45 0.03 265); /* secondary text on the runway (>= 4.5:1) */
+
+  /* Status: always paired with words */
+  --late: oklch(0.52 0.17 28); /* late marks on surface (>= 3:1) */
+  --late-text: oklch(0.49 0.16 28); /* late text on surface and tint (>= 4.5:1) */
+  --late-tint: oklch(0.955 0.025 28); /* late chip ground */
+  --late-on-deep: oklch(0.49 0.16 28); /* late marks and text on the runway */
+  --soon: oklch(0.66 0.13 70); /* due-soon marks on surface (>= 3:1) */
+  --soon-text: oklch(0.49 0.11 62); /* due-soon text (>= 4.5:1) */
+  --soon-tint: oklch(0.955 0.04 80); /* due-soon chip ground */
+  --soon-on-deep: oklch(0.64 0.13 65); /* due-soon marks on the runway */
+  --later-on-deep: oklch(0.42 0.14 266); /* not-due marks on the runway */
+  --paid: oklch(0.55 0.13 155); /* paid marks and the stamp ink */
+  --paid-text: oklch(0.45 0.11 155); /* paid text (>= 4.5:1) */
+  --paid-tint: oklch(0.95 0.035 155); /* paid chip ground */
+  --stamp: oklch(0.45 0.12 155); /* the Paid stamp's ink: solid, so its date passes 4.5:1 */
+  --ink-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.1 0 0 0 1.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); /* uneven rubber-stamp inking (ring and word only) */
+
+  /* Client identity circles: tint ground, ink letter */
+  --client-l: 0.93; /* identity circle tint lightness */
+  --client-c: 0.045; /* identity circle tint chroma */
+  --client-ink-l: 0.4; /* identity letter lightness */
+  --client-ink-c: 0.1; /* identity letter chroma */
+
+  /* The slip */
+  --slip: oklch(0.995 0.004 250); /* invoice paper */
+  --slip-stub: oklch(0.965 0.012 262); /* tear-off stub */
+  --perf: oklch(0.78 0.03 266); /* perforation dashes */
+
+  /* Shadows: neutral only */
+  --shadow-rest: 0 0 0 1px oklch(0.895 0.008 250); /* hairline only: a card takes a border or a shadow, never both */ /* cards at rest */
+  --shadow-lift: 0 1px 2px oklch(0.3 0.03 265 / 0.08), 0 8px 22px oklch(0.3 0.03 265 / 0.09); /* the slip and runway: shadow only */ /* the slip and the runway */
+  --shadow-overlay: 0 24px 64px oklch(0.2 0.03 262 / 0.2), 0 2px 8px oklch(0.2 0.03 262 / 0.08); /* sheets, menus, toasts */
+  --scrim: oklch(0.2 0.03 262 / 0.34); /* behind sheets */
+
+  --focus-width: 2px;
+  --focus-offset: 2px;
+
+  --z-sticky: 200;
+  --z-sheet: 400;
+  --z-toast: 500;
+
+  /* Motion */
+  --dur-micro: 120ms;
+  --dur-short: 200ms;
+  --dur-medium: 320ms;
+  --dur-move: 520ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-press: cubic-bezier(0.3, 0.9, 0.2, 1);
+  --rule: oklch(0.91 0.028 262);
+  --chip-ring: oklch(0.8 0.05 266);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --n-h: 262; /* neutral hue: lamp-warm graphite */
+  --bg: oklch(0.18 0.01 262); /* page ground */
+  --surface: oklch(0.22 0.012 262); /* cards, sheets */
+  --surface-2: oklch(0.255 0.014 262); /* wells, hover rows */
+  --surface-3: oklch(0.3 0.02 266); /* selected row */
+  --line: oklch(0.32 0.014 262); /* hairlines */
+  --line-soft: oklch(0.275 0.012 262); /* row dividers */
+  --border-control: oklch(0.52 0.016 262); /* control edges (>= 3:1 on surface) */
+  --text: oklch(0.945 0.006 250); /* primary text */
+  --text-2: oklch(0.8 0.012 250); /* secondary text */
+  --text-3: oklch(0.72 0.012 250); /* meta text (>= 4.5:1 on surface) */
+  --ink: oklch(0.8 0.09 266); /* primary fill in the dark: pale ink */
+  --ink-hover: oklch(0.86 0.07 266); /* primary hover */
+  --on-ink: oklch(0.2 0.04 266); /* text on the pale ink fill */
+  --focus: oklch(0.78 0.1 262); /* focus ring */
+  --selection: oklch(0.4 0.08 255); /* text selection */
+  --deep: oklch(0.22 0.012 262); /* runway: a bluer step above the graphite */
+  --deep-2: oklch(0.27 0.025 266); /* markers on the runway */
+  --deep-well: oklch(0.255 0.035 28); /* the late bay */
+  --deep-line: oklch(0.38 0.03 266); /* runway hairlines */
+  --late: oklch(0.7 0.15 28); /* late marks */
+  --late-text: oklch(0.78 0.12 28); /* late text */
+  --late-tint: oklch(0.3 0.05 28); /* late chip ground */
+  --soon: oklch(0.78 0.12 75); /* due-soon marks */
+  --soon-text: oklch(0.83 0.1 78); /* due-soon text */
+  --soon-tint: oklch(0.3 0.045 70); /* due-soon chip ground */
+  --paid: oklch(0.72 0.13 155); /* paid marks */
+  --paid-text: oklch(0.8 0.11 155); /* paid text */
+  --paid-tint: oklch(0.29 0.045 155); /* paid chip ground */
+  --stamp: oklch(0.8 0.13 155); /* the Paid stamp's ink on the dark slip */
+  --client-l: 0.34; /* identity circle tint lightness */
+  --client-c: 0.05; /* identity circle tint chroma */
+  --client-ink-l: 0.86; /* identity letter lightness */
+  --client-ink-c: 0.08; /* identity letter chroma */
+  --slip: oklch(0.245 0.014 262); /* invoice paper under the lamp */
+  --slip-stub: oklch(0.275 0.02 266); /* stub */
+  --perf: oklch(0.45 0.03 266); /* perforation */
+  --shadow-rest: 0 0 0 1px oklch(1 0 0 / 0.04); /* dark: depth from surface steps, a faint edge only */
+  --shadow-lift: 0 0 0 1px oklch(1 0 0 / 0.05), 0 16px 40px oklch(0 0 0 / 0.35); /* slip and runway */
+  --shadow-overlay: 0 0 0 1px oklch(1 0 0 / 0.06), 0 24px 64px oklch(0 0 0 / 0.5); /* sheets, menus, toasts */
+  --scrim: oklch(0.1 0.01 262 / 0.55); /* behind sheets */
+  --on-deep: oklch(0.945 0.006 250);
+  --on-deep-2: oklch(0.78 0.015 250);
+  --late-on-deep: oklch(0.8 0.11 28);
+  --soon-on-deep: oklch(0.8 0.11 75);
+  --later-on-deep: oklch(0.8 0.09 266);
+  --rule: oklch(0.275 0.022 262);
+  --chip-ring: oklch(0.42 0.05 266);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-short: 0ms;
+    --dur-medium: 0ms;
+    --dur-move: 0ms;
+  }
+}
